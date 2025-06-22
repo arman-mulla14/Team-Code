@@ -1,0 +1,202 @@
+/* Basic styling for the chat bot terminal */
+.chat-bot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    height: 450px;
+    background-color: #282c34; /* Dark background */
+    border: 1px solid #3e4451;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    color: #abb2bf;
+    z-index: 1000;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.chat-bot-container.minimized {
+    transform: translateY(calc(100% - 40px)); /* Adjust based on toggle button height */
+    height: 40px;
+    overflow: hidden;
+}
+
+.chat-bot-header {
+    background-color: #21252b;
+    padding: 10px 15px;
+    border-bottom: 1px solid #3e4451;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+    color: #e0e0e0;
+    font-weight: bold;
+}
+
+.chat-bot-header .header-title {
+    display: flex;
+    align-items: center;
+}
+
+.chat-bot-header .header-title i {
+    margin-right: 8px;
+    color: #61afef; /* A nice blue for the icon */
+}
+
+.chat-bot-header .header-actions button {
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.chat-bot-header .header-actions button:hover {
+    color: #ffffff;
+}
+
+.chat-output {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Preserve whitespace and allow wrapping */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #555 #2f343a; /* Firefox */
+}
+
+/* Custom scrollbar for Webkit browsers */
+.chat-output::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-output::-webkit-scrollbar-track {
+    background: #2f343a;
+}
+
+.chat-output::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+}
+
+.chat-output::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+.chat-input-container {
+    padding: 10px 15px;
+    border-top: 1px solid #3e4451;
+    display: flex;
+    align-items: center;
+    background-color: #21252b;
+}
+
+.chat-input-container input {
+    flex-grow: 1;
+    background-color: #3e4451;
+    border: 1px solid #5c6370;
+    border-radius: 5px;
+    padding: 8px 12px;
+    color: #e0e0e0;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.chat-input-container input:focus {
+    border-color: #61afef;
+    box-shadow: 0 0 0 2px rgba(97, 175, 239, 0.2);
+}
+
+.chat-input-container button {
+    background-color: #61afef;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-left: 10px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chat-input-container button:hover {
+    background-color: #52a0da;
+}
+
+.message {
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.message.user {
+    color: #e0e0e0;
+    text-align: right;
+}
+
+.message.bot {
+    color: #98c379; /* Green for bot messages */
+    text-align: left;
+}
+
+.message.command {
+    color: #c678dd; /* Purple for commands */
+}
+
+.message.info {
+    color: #e5c07b; /* Yellow for info */
+}
+
+.suggestion-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.suggestion-buttons button {
+    background-color: #5c6370;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-buttons button:hover {
+    background-color: #7f8694;
+}
+
+.terminal-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #61afef;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    transition: background-color 0.2s ease, transform 0.3s ease-in-out;
+}
+
+.terminal-toggle-btn:hover {
+    background-color: #52a0da;
+}
+
+.terminal-toggle-btn.minimized-btn {
+    bottom: 20px;
+    right: 20px;
+} 

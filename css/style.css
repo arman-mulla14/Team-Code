@@ -1,0 +1,644 @@
+/* Terminal-like styling for Project Hoster */
+
+:root {
+    --primary-color: #3b82f6;
+    --secondary-color: #1e293b;
+    --accent-color: #60a5fa;
+    --background-color: #0f172a;
+    --text-color: #e2e8f0;
+    --border-color: #334155;
+    --hover-color: #2563eb;
+    --modal-bg: #1e293b;
+    --sidebar-width: 280px;
+    --card-bg: #1e293b;
+    --input-bg: #1e293b;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: var(--secondary-color) !important;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.nav-link {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Main container layout */
+.main-editor-container {
+    display: flex;
+    flex: 1;
+    background-color: var(--background-color);
+}
+
+.editor-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+}
+
+/* Main content sections - hidden by default */
+.welcome-screen, .project-grid-view, .editor-content-wrapper {
+    display: none; /* Hide all by default */
+}
+
+/* Active view class */
+.active-view {
+    display: block; /* Make visible when this class is added */
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--secondary-color);
+    border-right: 1px solid var(--border-color);
+    padding: 1.5rem;
+    overflow-y: auto;
+    box-shadow: 1px 0 3px rgba(0, 0, 0, 0.2);
+    min-height: 0; /* Ensure sidebar can shrink if needed */
+}
+
+.sidebar h5 {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.file-explorer-toolbar {
+    display: flex;
+    justify-content: flex-end; /* Revert to flex-end to push buttons right */
+    margin-bottom: 15px;
+    /* Removed temporary background-color and padding */
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.file-explorer-toolbar .btn {
+    color: #c5c5c5; /* Icons color */
+    background-color: transparent;
+    border: none;
+    padding: 5px; /* Smaller padding for icons */
+    font-size: 1.1rem; /* Icon size */
+    border-radius: 3px;
+}
+
+.file-explorer-toolbar .btn:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.file-explorer {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.file-explorer li {
+    padding: 0.2rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+}
+
+.file-explorer li:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--primary-color);
+}
+
+.file-explorer li i {
+    margin-right: 0.2rem;
+    color: var(--primary-color); /* Default color, can be overridden */
+    font-size: 0.9rem;
+}
+
+.file-explorer li .mdi-folder {
+    color: #FFC107; /* Bright orange for folders */
+}
+
+.file-explorer li .mdi-file-document {
+    color: #00BFFF; /* Deep sky blue for general files */
+}
+
+/* File type specific colors */
+.file-explorer li .mdi-language-html5 {
+    color: #E34F26; /* Orange for HTML */
+}
+
+.file-explorer li .mdi-language-css3 {
+    color: #1572B6; /* Blue for CSS */
+}
+
+.file-explorer li .mdi-language-javascript {
+    color: #F7DF1E; /* Yellow for JavaScript */
+}
+
+.file-explorer li .mdi-language-python {
+    color: #3776AB; /* Dark blue for Python */
+}
+
+.file-explorer li .mdi-language-markdown {
+    color: #000000; /* Black for Markdown, or a dark grey */
+}
+
+.file-explorer li .mdi-json {
+    color: #FFD700; /* Gold for JSON */
+}
+
+.file-explorer li .mdi-web {
+    color: #4285F4; /* Google Blue for webmanifest */
+}
+
+.file-input-item {
+    background-color: rgba(97, 175, 239, 0.1); /* Light blue background */
+    border: 1px dashed #61afef; /* Dashed border */
+    padding: 5px;
+    margin: 2px 0;
+    width: 100%;
+    cursor: default;
+    display: flex;
+    align-items: center;
+}
+
+.file-input-item input {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.875rem;
+    flex-grow: 1;
+    margin-left: 8px;
+}
+
+/* Welcome screen styling */
+.welcome-screen {
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+.welcome-icon {
+    margin-bottom: 2rem;
+}
+
+.welcome-icon i {
+    font-size: 4rem;
+    color: var(--primary-color);
+}
+
+.welcome-screen h1 {
+    color: var(--text-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.welcome-screen .lead {
+    color: #94a3b8;
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+}
+
+/* Button styling */
+.btn {
+    font-weight: 500;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.btn:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+    color: #ffffff;
+}
+
+/* Project grid styling */
+.project-grid-view {
+    padding: 2rem;
+}
+
+.project-grid-view h2 {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Project card specific styling */
+.project-grid-view .card {
+    max-width: 200px; /* Limit card width to ensure more fit */
+    margin: auto; /* Center cards in their columns */
+}
+
+.project-grid-view .card-body {
+    padding: 0.75rem;
+}
+
+.project-grid-view .card-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-grid-view .card-text {
+    font-size: 0.75rem;
+}
+
+.project-grid-view .card-body .mdi.mdi-folder-multiple {
+    font-size: 2.5rem !important; /* Adjust icon size */
+    margin-bottom: 0.5rem !important;
+}
+
+.project-grid-view .card-body .badge {
+    font-size: 0.65rem; /* Smaller font size for the badge */
+    padding: 0.3em 0.5em; /* Adjusted padding */
+    white-space: normal; /* Allow text to wrap */
+    text-align: center;
+}
+
+.project-grid-view .card-footer {
+    padding: 0.5rem;
+}
+
+.project-grid-view .card-footer .btn {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+}
+
+/* Modal styling */
+.modal-content {
+    background-color: var(--modal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 1.5rem;
+}
+
+.modal-title {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+/* Context menu styling */
+.context-menu {
+    background-color: var(--modal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 0;
+}
+
+.context-menu-item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--text-color);
+    transition: all 0.2s ease;
+}
+
+.context-menu-item:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--primary-color);
+}
+
+/* Toast styling */
+.toast {
+    background-color: var(--modal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.toast-header {
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Editor toolbar styling */
+.editor-toolbar {
+    padding: 0.75rem;
+    background-color: var(--secondary-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Collaboration status styling */
+.collaboration-status {
+    padding: 0.75rem;
+    background-color: var(--secondary-color);
+    border-top: 1px solid var(--border-color);
+    font-size: 0.875rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Form controls */
+.form-control {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    font-size: 0.875rem;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.375rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.form-label {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Code editor */
+#codeEditor {
+    width: 100%;
+    height: 100%;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.875rem;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    resize: none;
+}
+
+/* Terminal-like elements */
+.terminal-prompt::before {
+    content: "> ";
+    color: var(--primary-color);
+}
+
+.terminal-output {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Welcome buttons */
+.welcome-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .main-editor-container {
+        flex-direction: column;
+    }
+    
+    .welcome-screen {
+        padding: 2rem 1rem;
+    }
+    
+    .welcome-screen h1 {
+        font-size: 2rem;
+    }
+    
+    .welcome-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Center Bootstrap Modals */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 1rem); /* Adjust based on your modal padding */
+}
+
+.modal.fade .modal-dialog {
+    transform: translate(0, -25%);
+    transition: transform 0.3s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: translate(0, 0);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.file-explorer li .file-icon, .file-explorer li .folder-icon {
+    font-size: 1.1rem;
+    margin-right: 8px;
+    color: #61afef;
+    flex-shrink: 0;
+}
+
+.file-explorer li .folder-icon {
+    color: #e0b42f;
+}
+
+.file-explorer li .file-name, .file-explorer li .folder-name {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-actions, .folder-actions {
+    position: static;
+    margin-left: auto;
+    display: flex;
+    gap: 5px;
+}
+
+.delete-file-btn, .delete-folder-btn {
+    display: none;
+}
+
+.nested-files {
+    list-style: none;
+    padding-left: 15px;
+    margin: 0;
+    display: block;
+}
+
+.file-explorer li .form-control-sm {
+    height: 24px;
+    padding: 2px 5px;
+    font-size: 0.9rem;
+}
+
+.preview-container {
+    border: 1px solid #3e4451;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: #fff;
+}
+
+#previewFrame {
+    width: 100%;
+    height: 300px;
+    border: none;
+}
+
+.context-menu {
+    position: absolute;
+    background-color: #2f343a;
+    border: 1px solid #3e4451;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+    min-width: 150px;
+}
+
+.context-menu .list-group-item {
+    background-color: transparent;
+    border: none;
+    color: #abb2bf;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+.context-menu .list-group-item:hover {
+    background-color: #3e4451;
+    color: #fff;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    margin: 100px auto;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.list-group-item {
+    background-color: var(--secondary-color);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.list-group-item:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.text-muted {
+    color: #94a3b8 !important;
+}
+
+.editor-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    background-color: var(--dark-background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    padding: 5px 0;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.autocomplete-suggestions::-webkit-scrollbar {
+    display: none;
+}
+
+.autocomplete-suggestions div {
+    padding: 8px 15px;
+    cursor: pointer;
+    color: var(--light-text-color);
+}
+
+.autocomplete-suggestions div:hover,
+.autocomplete-suggestions .active-suggestion {
+    background-color: var(--hover-color);
+    color: var(--primary-color);
+} 
