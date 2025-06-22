@@ -1,0 +1,298 @@
+/* Terminal Toggle Button */
+.terminal-toggle-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: linear-gradient(135deg, #4b0082, #000080); /* Deep purple to indigo gradient */
+    color: white;
+    border: none;
+    padding: 16px 28px;
+    border-radius: 18px; /* More pill-like */
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(106, 0, 141, 0.5); /* Enhanced glow */
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+}
+
+.terminal-toggle-btn:hover {
+    background: linear-gradient(135deg, #5a009c, #00009c); /* Slightly brighter on hover */
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(106, 0, 141, 0.8);
+}
+
+/* Adjust chat-bot position if it overlaps with the button */
+#chat-bot.active {
+    /* You might want to adjust the chat-bot's default position here */
+    /* For example, if it typically opens at bottom-left, shift it up/right */
+}
+
+/* Existing chat-bot styles - AI Redesign */
+.chat-bot-container {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 700px; /* Wider for more content */
+    height: 500px; /* Taller */
+    background-color: #1c1c2c; /* Deep, muted blue-purple background */
+    border-radius: 20px; /* Significantly more rounded, modern blob-like */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(75, 0, 130, 0.5); /* Deeper shadow with subtle glow */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+    resize: both;
+    min-width: 350px;
+    min-height: 280px;
+    transition: all 0.4s ease-in-out;
+    border: 1px solid rgba(106, 0, 141, 0.3); /* Subtle outer glow border */
+    backdrop-filter: blur(5px); /* Soft blur effect */
+}
+
+.chat-bot-container.chat-bot-minimized {
+    width: 250px; /* Wider minimized state */
+    height: 55px; /* Taller when minimized */
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 18px; /* Consistent with button */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(106, 0, 141, 0.5);
+}
+
+.chat-bot-header {
+    background: linear-gradient(90deg, #2a0050, #3a1060); /* Header with a subtle gradient */
+    padding: 15px 25px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+    color: #e0e0e0;
+    font-weight: 700;
+    font-family: 'Poppins', 'Segoe UI', sans-serif; /* Poppins for a modern feel */
+    font-size: 1.2em;
+    border-bottom: 1px solid rgba(106, 0, 141, 0.2); /* Finer separator with accent */
+    position: relative; /* For the pseudo-element glow */
+}
+
+/* Subtle glow effect for header */
+.chat-bot-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #6a0dad, transparent); /* Fading glow line */
+    opacity: 0.7;
+}
+
+.chat-bot-header.dragging {
+    cursor: grabbing;
+}
+
+.chat-bot-title {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 0 8px rgba(106, 0, 141, 0.6); /* Subtle text glow */
+}
+
+.chat-bot-title::before {
+    content: '\1F916'; /* Robot emoji, consistent */
+    margin-right: 10px;
+    font-size: 1.3em;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 5px #6a0dad); /* Glow for the emoji */
+}
+
+.chat-bot-content {
+    flex-grow: 1;
+    background-color: #12121e; /* Even darker blue-purple content area */
+    color: #e0e0e0; /* Lighter text for readability */
+    padding: 20px 25px;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; /* Professional coding font */
+    font-size: 0.98em;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Custom Scrollbar Styles (for Webkit browsers) */
+.chat-bot-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chat-bot-content::-webkit-scrollbar-track {
+    background: #1c1c2c;
+    border-radius: 10px;
+}
+
+.chat-bot-content::-webkit-scrollbar-thumb {
+    background-color: #4a4a60; /* Muted scrollbar thumb */
+    border-radius: 10px;
+    border: 2px solid #1c1c2c;
+}
+
+.chat-bot-content::-webkit-scrollbar-thumb:hover {
+    background-color: #6a6a80;
+}
+
+.chat-bot-input-line {
+    display: flex;
+    padding: 15px 25px;
+    background-color: #2a2a3a; /* Slightly lighter input background */
+    border-top: 1px solid rgba(106, 0, 141, 0.2); /* Consistent with header separator */
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-bot-prompt {
+    color: #8be9fd; /* Bright info blue for prompt */
+    margin-right: 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 0 5px rgba(139, 233, 253, 0.5);
+}
+
+.chat-bot-input {
+    flex-grow: 1;
+    background-color: #1c1c2c; /* Input field background matches container */
+    border: 1px solid rgba(106, 0, 141, 0.4); /* Subtle border */
+    border-radius: 8px; /* Rounded input */
+    color: #f5f5f5;
+    outline: none;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 1em;
+    padding: 10px 15px;
+    transition: all 0.2s ease;
+
+}
+
+.chat-bot-input:focus {
+    border-color: #8be9fd; /* Glow on focus */
+    box-shadow: 0 0 10px rgba(139, 233, 253, 0.6);
+}
+
+.chat-bot-input::placeholder {
+    color: #a0a0a0;
+    opacity: 0.6;
+}
+
+.terminal-message {
+    margin-bottom: 12px;
+    line-height: 1.8;
+    word-break: break-word; /* Ensure long words break */
+}
+
+.terminal-message.input {
+    color: #b0b0b0;
+    font-style: italic;
+}
+
+.terminal-message.error {
+    color: #ff8a8a; /* Soft red */
+    font-weight: 500;
+}
+
+.terminal-message.info {
+    color: #8be9fd; /* Vibrant blue */
+}
+
+.terminal-message.success {
+    color: #a4e0a9; /* Soft green */
+}
+
+.terminal-message.code {
+    color: #e6e6e6;
+}
+
+.terminal-message.code pre {
+    background: #0f0f1a; /* Even darker, almost black background for code */
+    padding: 1.5rem;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 1.2rem 0;
+    border: 1px solid rgba(139, 233, 253, 0.2); /* Subtle code block border with accent */
+    box-shadow: inset 0 0 8px rgba(139, 233, 253, 0.1);
+}
+
+.terminal-message.code code {
+    font-family: 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+    color: #e6e6e6;
+    font-size: 0.9em;
+}
+
+/* Movement controls */
+.chat-bot-movement-controls {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.terminal-movement-btn {
+    background-color: #3a3a4a; /* Muted button color */
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.terminal-movement-btn:hover {
+    background-color: #5a5a70;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Helper classes for visibility */
+.terminal-hidden {
+    display: none;
+}
+
+.terminal-minimized {
+    height: 55px;
+    border-radius: 18px;
+}
+
+.terminal-minimized .chat-bot-content {
+    display: none;
+}
+
+.terminal-minimized .chat-bot-header {
+    border-bottom: none;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+/* Animation for thinking dots */
+@keyframes blink-dots {
+    0% { opacity: 0.2; }
+    33% { opacity: 1; }
+    66% { opacity: 0.2; }
+    100% { opacity: 0.2; }
+}
+
+.thinking-dots span {
+    opacity: 0.2;
+    animation: blink-dots 1.5s infinite;
+}
+
+.thinking-dots span:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.thinking-dots span:nth-child(3) {
+    animation-delay: 1s;
+} 

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Hoster - Editor</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="apple-touch-icon" href="images/icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <!-- Terminal -->
+    <link rel="stylesheet" href="css/terminal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat-bot.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="mdi mdi-code-braces me-2"></i>
+                 Hoster Team
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="main.html" id="backToProjectsLink">
+                            <i class="mdi mdi-folder me-1"></i>
+                            Projects
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chat.html">
+                            <i class="mdi mdi-chat me-1"></i>
+                            Chat with Jack
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Editor Container -->
+    <div class="main-editor-container d-flex flex-grow-1">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <h5><i class="mdi mdi-folder-multiple me-2"></i>Project Files</h5>
+            <div class="file-explorer-toolbar d-flex justify-content-end mb-2">
+                <button class="btn btn-sm btn-light" id="newFileBtn" title="New File">
+                    <i class="mdi mdi-file-plus"></i>
+                </button>
+                <button class="btn btn-sm btn-light" id="newFolderBtn" title="New Folder">
+                    <i class="mdi mdi-folder-plus"></i>
+                </button>
+            </div>
+            <ul class="file-explorer" id="fileExplorer"></ul>
+        </div>
+
+        <div class="editor-main" id="editorMain">
+            <div class="editor-content-wrapper d-flex flex-column flex-grow-1">
+                <div class="editor-toolbar">
+                    <button class="btn btn-light me-2" id="backToProjectsBtn">
+                        <i class="mdi mdi-arrow-left me-1"></i>Back to Projects
+                    </button>
+                    <button class="btn btn-success me-2" id="saveBtn">
+                        <i class="mdi mdi-content-save me-1"></i>Save
+                    </button>
+                    <button class="btn btn-primary" id="liveServerBtn">
+                        <i class="mdi mdi-web me-1"></i>Live Server
+                    </button>
+                </div>
+                <div class="editor-content">
+                    <textarea id="codeEditor" class="form-control"></textarea>
+                    <div id="autocompleteSuggestions" class="autocomplete-suggestions" style="display:none;">
+                        <!-- Suggestions will be dynamically inserted here -->
+                    </div>
+                </div>
+                <div class="collaboration-status" id="collaborationStatus">
+                    <i class="mdi mdi-account-multiple me-1"></i>
+                    <span>Collaborating...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Context Menu -->
+    <div id="customContextMenu" class="context-menu" style="display:none;">
+        <ul class="list-group">
+            <li class="list-group-item context-menu-item" id="contextMenuNewFile">
+                <i class="mdi mdi-file-plus me-2"></i>New File
+            </li>
+            <li class="list-group-item context-menu-item" id="contextMenuNewFolder">
+                <i class="mdi mdi-folder-plus me-2"></i>New Folder
+            </li>
+            <li class="list-group-item context-menu-item" id="contextMenuOpen">
+                <i class="mdi mdi-folder-open me-2"></i>Open
+            </li>
+            <li class="list-group-item context-menu-item" id="contextMenuDelete">
+                <i class="mdi mdi-trash-can me-2"></i>Delete
+            </li>
+            <li class="list-group-item context-menu-item" id="contextMenuCopy">
+                <i class="mdi mdi-content-copy me-2"></i>Copy
+            </li>
+            <li class="list-group-item context-menu-item" id="contextMenuCut">
+                <i class="mdi mdi-content-cut me-2"></i>Cut
+            </li>
+            <li class="list-group-item context-menu-item" id="contextMenuPaste">
+                <i class="mdi mdi-content-paste me-2"></i>Paste
+            </li>
+        </ul>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <!-- Toasts will be appended here -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/editor.js"></script>
+    <!-- Terminal -->
+    <script src="js/terminal.js"></script>
+    <script src="js/chat-bot.js"></script>
+
+    <button id="openTerminalBtn" class="terminal-toggle-btn">Jack</button>
+</body>
+</html> 
